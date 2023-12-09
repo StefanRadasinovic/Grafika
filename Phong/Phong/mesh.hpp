@@ -1,7 +1,4 @@
 
-
-#pragma once
-
 #include <assimp/scene.h>
 #include<vector>
 #include <GL/glew.h>
