@@ -6,6 +6,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <chrono>
 #include <thread>
+#include "shader.hpp"
+#include "camera.hpp"
+#include "model.hpp"
+#include "texture.hpp"
 
 float
 Clamp(float x, float min, float max) {
@@ -17,7 +21,59 @@ int WindowHeight = 1200;
 const float TargetFPS = 60.0f;
 const std::string WindowTitle = "Phong";
 
+struct Input {
+    bool MoveLeft;
+    bool MoveRight;
+    bool MoveUp;
+    bool MoveDown;
+    bool LookLeft;
+    bool LookRight;
+    bool LookUp;
+    bool LookDown;
+};
 
+struct EngineState {
+    Input* mInput;
+    Camera* mCamera;
+    unsigned mShadingMode;
+    bool mDrawDebugLines;
+    float mDT;
+};
+
+static void
+ErrorCallback(int error, const char* description) {
+    std::cerr << "GLFW Error: " << description << std::endl;
+}
+
+static float Svetlofenjer = 0;
+
+static void
+KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode) {
+    EngineState* State = (EngineState*)glfwGetWindowUserPointer(window);
+    Input* UserInput = State->mInput;
+    bool IsDown = action == GLFW_PRESS || action == GLFW_REPEAT;
+    switch (key) {
+    case GLFW_KEY_A: UserInput->MoveLeft = IsDown; break;
+    case GLFW_KEY_D: UserInput->MoveRight = IsDown; break;
+    case GLFW_KEY_W: UserInput->MoveUp = IsDown; break;
+    case GLFW_KEY_S: UserInput->MoveDown = IsDown; break;
+
+    case GLFW_KEY_RIGHT: UserInput->LookLeft = IsDown; break;
+    case GLFW_KEY_LEFT: UserInput->LookRight = IsDown; break;
+    case GLFW_KEY_UP: UserInput->LookUp = IsDown; break;
+    case GLFW_KEY_DOWN: UserInput->LookDown = IsDown; break;
+
+    case GLFW_KEY_1: Svetlofenjer = 1; break;
+    case GLFW_KEY_2: Svetlofenjer = 0; break;
+    case GLFW_KEY_L: {
+        if (IsDown) {
+            State->mDrawDebugLines ^= true; break;
+        }
+    } break;
+
+    case GLFW_KEY_ESCAPE: glfwSetWindowShouldClose(window, GLFW_TRUE); break;
+    }
+}
 
 static void
 FramebufferSizeCallback(GLFWwindow* window, int width, int height) {
