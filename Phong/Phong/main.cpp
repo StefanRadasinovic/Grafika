@@ -110,6 +110,29 @@ HandleInput(EngineState* state) {
     if (UserInput->LookUp) FPSCamera->Rotate(0.0f, 1.0f, state->mDT);
 }
 
+static void
+DrawFloor(unsigned vao, const Shader& shader, unsigned diffuse, unsigned specular) {
+    glUseProgram(shader.GetId());
+    glBindVertexArray(vao);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, diffuse);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, specular);
+    float Size = 4.0f;
+    for (int i = -2; i < 4; ++i) {
+        for (int j = -2; j < 4; ++j) {
+            glm::mat4 Model(1.0f);
+            Model = glm::translate(Model, glm::vec3(i * Size, -2.0f, j * Size));
+            Model = glm::scale(Model, glm::vec3(Size, 0.1f, Size));
+            shader.SetModel(Model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+    }
+
+    glBindVertexArray(0);
+    glUseProgram(0);
+}
+
 float GetRadians(float angle) {
     return 3.14 * angle / 180;
 }
