@@ -164,6 +164,23 @@ int main() {
         return -1;
     }
 
+    EngineState State = { 0 };
+    Camera FPSCamera;
+    Input UserInput = { 0 };
+    State.mCamera = &FPSCamera;
+    State.mInput = &UserInput;
+    glfwSetWindowUserPointer(Window, &State);
+
+    glfwSetErrorCallback(ErrorCallback);
+    glfwSetFramebufferSizeCallback(Window, FramebufferSizeCallback);
+    glfwSetKeyCallback(Window, KeyCallback);
+
+    glViewport(0.0f, 0.0f, WindowWidth, WindowHeight);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+
+
+
         glBindVertexArray(0);
         glUseProgram(0);
         glfwSwapBuffers(Window);
