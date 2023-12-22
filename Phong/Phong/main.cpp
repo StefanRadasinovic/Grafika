@@ -261,6 +261,45 @@ int main() {
     Shader PhongShaderMaterialTexture("shaders/basic.vert", "shaders/phong_material_texture.frag");
     glUseProgram(PhongShaderMaterialTexture.GetId());
 
+    //Ambijentalno svetlo/Direkciono
+    PhongShaderMaterialTexture.SetUniform3f("uDirLight.Direction", glm::vec3(1.0f, -1.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uDirLight.Ka", glm::vec3(0.7f, 0.7f, 0.7f));
+    PhongShaderMaterialTexture.SetUniform3f("uDirLight.Kd", glm::vec3(0.05f, 0.05f, 0.05f));
+    PhongShaderMaterialTexture.SetUniform3f("uDirLight.Ks", glm::vec3(0.8f));
+
+    //Svetlofenjer
+    PhongShaderMaterialTexture.SetUniform3f("uPointLight.Position", glm::vec3(0.3f, 0.5f, -3.3f));
+    PhongShaderMaterialTexture.SetUniform3f("uPointLight.Ka", glm::vec3(0.5f * Svetlofenjer, 0.5f * Svetlofenjer, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uPointLight.Kd", glm::vec3(0.5f * Svetlofenjer, 0.5f * Svetlofenjer, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uPointLight.Ks", glm::vec3(1.0f * Svetlofenjer));
+    PhongShaderMaterialTexture.SetUniform1f("uPointLight.Kc", 1.0f);
+    PhongShaderMaterialTexture.SetUniform1f("uPointLight.Kl", 0.092f);
+    PhongShaderMaterialTexture.SetUniform1f("uPointLight.Kq", 0.032f);
+
+    //plavo
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Position", glm::vec3(5.7f, -1.0f, 0.6f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Direction", glm::vec3(0.0f, -0.5f, -1.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Ka", glm::vec3(0.0f, 0.0f, 1.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Kd", glm::vec3(0.0f, 0.0f, 1.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Ks", glm::vec3(1.0f));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.Kc", 1.0f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.Kl", 0.092f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.Kq", 0.032f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.OuterCutOff", glm::cos(glm::radians(10.0f)));
+
+    //crvena
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Position", glm::vec3(5.70f, -1.0f, 1.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Direction", glm::vec3(0.0f, -0.5f, 1.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Ka", glm::vec3(1.0f, 0.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Kd", glm::vec3(1.0f, 0.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Ks", glm::vec3(1.0f));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.Kc", 1.0f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.Kl", 0.092f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.Kq", 0.032f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.OuterCutOff", glm::cos(glm::radians(10.0f)));
+
 
         glBindVertexArray(0);
         glUseProgram(0);
