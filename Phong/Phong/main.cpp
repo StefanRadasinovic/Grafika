@@ -300,6 +300,69 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.OuterCutOff", glm::cos(glm::radians(10.0f)));
 
+    //nandzarasta
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Position", glm::vec3(5.7f, -0.8f, 0.8f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Direction", glm::vec3(0.0f, 1.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Ka", glm::vec3(1.0f, 0.5f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Kd", glm::vec3(1.0f, 0.5f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Ks", glm::vec3(1.0f, 0.5f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.Kc", 1.0f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.Kl", 0.092f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.Kq", 0.032f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.OuterCutOff", glm::cos(glm::radians(10.0f)));
+
+
+    //zutiOdsjaj
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Position", glm::vec3(5.9f, -1.0f, 0.8));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Direction", glm::vec3(1.0f, -0.5f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Ka", glm::vec3(1.0f, 1.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Kd", glm::vec3(1.0f, 1.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Ks", glm::vec3(1.0f));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.Kc", 1.0f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.Kl", 0.092f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.Kq", 0.032f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.OuterCutOff", glm::cos(glm::radians(10.0f)));
+
+
+    //ljubicasta
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Position", glm::vec3(5.7f, -1.2f, 0.8f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Direction", glm::vec3(0.0f, -1.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Ka", glm::vec3(0.5f, 0.0f, 0.5f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Kd", glm::vec3(0.5f, 0.0f, 0.5f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Ks", glm::vec3(0.5f, 0.0f, 0.5f));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.Kc", 1.0f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.Kl", 0.092f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.Kq", 0.032f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.OuterCutOff", glm::cos(glm::radians(10.0f)));
+
+    //zelena
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Position", glm::vec3(5.5f, -1.0f, 0.8f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Direction", glm::vec3(-1.0f, -0.5f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Ka", glm::vec3(0.0f, 1.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Kd", glm::vec3(0.0f, 1.0f, 0.0f));
+    PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Ks", glm::vec3(1.0f));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.Kc", 1.0f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.Kl", 0.092f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.Kq", 0.032f);
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.OuterCutOff", glm::cos(glm::radians(10.0f)));
+
+    // Diminishes the light's diffuse component by half, tinting it slightly red
+    PhongShaderMaterialTexture.SetUniform1i("uMaterial.Kd", 0);
+    // Makes the object really shiny
+    PhongShaderMaterialTexture.SetUniform1i("uMaterial.Ks", 1);
+    PhongShaderMaterialTexture.SetUniform1f("uMaterial.Shininess", 128.0f);
+    glUseProgram(0);
+
+    glm::mat4 Projection = glm::perspective(45.0f, WindowWidth / (float)WindowHeight, 0.1f, 100.0f);
+    glm::mat4 View = glm::lookAt(FPSCamera.GetPosition(), FPSCamera.GetTarget(), FPSCamera.GetUp());
+    glm::mat4 ModelMatrix(1.0f);
+
+
+
 
         glBindVertexArray(0);
         glUseProgram(0);
