@@ -434,7 +434,41 @@ int main() {
         glBindVertexArray(CubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
 
+        //rightSide tent
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::rotate(identity, GetRadians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        ModelMatrix = glm::rotate(ModelMatrix, GetRadians(45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(-4.4, -2.6, -1.0));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(3.0f, 6.5f, 0.05f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, TentTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
 
+        //backSide tent
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::rotate(identity, GetRadians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        ModelMatrix = glm::rotate(ModelMatrix, GetRadians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(-1.2, -1.6, -5.9));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(4.5f, 4.5f, 0.05f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, TentTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
+
+        //stick
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::rotate(identity, GetRadians(-45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        ModelMatrix = glm::rotate(ModelMatrix, GetRadians(30.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(4.4, 1.9, -1.2));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.1f, 3.0f, 0.1f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, CubeDiffuseTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
 
 
 
