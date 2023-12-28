@@ -512,14 +512,47 @@ int main() {
         ColorShader.SetUniform3f("uColor", glm::vec3(1.0, 0.0f, 0.0f));
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
+        //zeleno
+        ModelMatrix = glm::translate(identity, glm::vec3(5.5f, -1.0f + y, 0.8f));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
+        ColorShader.SetModel(ModelMatrix);
+        glBindVertexArray(CubeVAO);
+        ColorShader.SetUniform3f("uColor", glm::vec3(0.0f, 1.0f, 0.0f));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
+        //nandzarasta
+        ModelMatrix = glm::translate(identity, glm::vec3(5.7f, -0.8f + y, 0.8f));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
+        ColorShader.SetModel(ModelMatrix);
+        glBindVertexArray(CubeVAO);
+        ColorShader.SetUniform3f("uColor", glm::vec3(1.0f, 0.5f, 0.0f));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+        ////ljubicasto
+        ModelMatrix = glm::translate(identity, glm::vec3(5.7f, -1.2f + y, 0.8f));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
+        ColorShader.SetModel(ModelMatrix);
+        glBindVertexArray(CubeVAO);
+        ColorShader.SetUniform3f("uColor", glm::vec3(0.5f, 0.0f, 0.5f));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+
+        //Svetlofenjer
+        ModelMatrix = glm::translate(identity, glm::vec3(0.3f, 0.5f, -3.3f));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
+        ColorShader.SetModel(ModelMatrix);
+        glBindVertexArray(CubeVAO);
+        ColorShader.SetUniform3f("uColor", glm::vec3(1.0f, 1.0f, 0.0f));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
         glBindVertexArray(0);
         glUseProgram(0);
         glfwSwapBuffers(Window);
 
-        
+        // NOTE(Jovan): Time management
         EndTime = glfwGetTime();
         float WorkTime = EndTime - StartTime;
         if (WorkTime < TargetFrameTime) {
@@ -532,4 +565,5 @@ int main() {
 
     glfwTerminate();
     return 0;
+
 }
