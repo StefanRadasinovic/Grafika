@@ -470,7 +470,47 @@ int main() {
         glBindVertexArray(CubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
 
+        // NOTE(Jovan): Models have their textures automatically loaded and set (if existent)
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::rotate(identity, GetRadians(45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(2.1, -1.5, -2.4));
+        CurrentShader->SetModel(ModelMatrix);
+        Fox.Render();
 
+        DrawFloor(CubeVAO, *CurrentShader, FloorDiffuseTexture, FloorSpecularTexture);
+
+        glUseProgram(ColorShader.GetId());
+        ColorShader.SetProjection(Projection);
+        ColorShader.SetView(View);
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.0f, 1.0f, -2.0f));
+        ColorShader.SetModel(ModelMatrix);
+
+
+        //plavo
+        ModelMatrix = glm::translate(identity, glm::vec3(5.7f, -1.0f + y, 0.6f));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
+        ColorShader.SetModel(ModelMatrix);
+        glBindVertexArray(CubeVAO);
+        ColorShader.SetUniform3f("uColor", glm::vec3(0.0f, 0.0f, 1.0f));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+        //zuto
+        ModelMatrix = glm::translate(identity, glm::vec3(5.9f, -1.0f + y, 0.8));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
+        ColorShader.SetModel(ModelMatrix);
+        glBindVertexArray(CubeVAO);
+        ColorShader.SetUniform3f("uColor", glm::vec3(1.0f, 1.0f, 0.0f));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        //crveno
+        ModelMatrix = glm::translate(identity, glm::vec3(5.70f, -1.0f + y, 1.0f));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
+        ColorShader.SetModel(ModelMatrix);
+        glBindVertexArray(CubeVAO);
+        ColorShader.SetUniform3f("uColor", glm::vec3(1.0, 0.0f, 0.0f));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
 
