@@ -78,12 +78,12 @@ static void
 MoveCube(GLFWwindow* context, float& x, float& y, float& z) {
     if (glfwGetKey(context, GLFW_KEY_C) == GLFW_PRESS) {
         if (y < 0) {
-            y += 0.07;
+            y += 0.08;
         }
     }
     if (glfwGetKey(context, GLFW_KEY_V) == GLFW_PRESS) {
         if (y > -2.0) {
-            y -= 0.07;
+            y -= 0.08;
         }
     }
 }
