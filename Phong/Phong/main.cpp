@@ -184,7 +184,7 @@ int main() {
     unsigned WaterDiffuseTexture = Texture::LoadImageToTexture("res/water.jpg");
     unsigned WaterSpecularTexture = Texture::LoadImageToTexture("res/water-diff.jpg");
     unsigned TentTexture = Texture::LoadImageToTexture("res/tent.jpg");
-    unsigned FishTexture = Texture::LoadImageToTexture("res/cube.jpg");
+    unsigned CubeTexture = Texture::LoadImageToTexture("res/cube.jpg");
     unsigned FloorDiffuseTexture = Texture::LoadImageToTexture("res/ice.jpg");
     unsigned FloorSpecularTexture = Texture::LoadImageToTexture("res/ice-diff.jpg");
 
@@ -418,7 +418,7 @@ int main() {
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.5f));
         CurrentShader->SetModel(ModelMatrix);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, FishTexture);
+        glBindTexture(GL_TEXTURE_2D, CubeTexture);
         glBindVertexArray(CubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
 
