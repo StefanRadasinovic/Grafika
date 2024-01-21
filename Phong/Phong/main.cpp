@@ -179,6 +179,16 @@ int main() {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
 
+    unsigned CubeDiffuseTexture = Texture::LoadImageToTexture("res/container_diffuse.png");
+    unsigned CubeSpecularTexture = Texture::LoadImageToTexture("res/container_specular.png");
+    unsigned WaterDiffuseTexture = Texture::LoadImageToTexture("res/water.jpg");
+    unsigned WaterSpecularTexture = Texture::LoadImageToTexture("res/water-diff.jpg");
+    unsigned TentTexture = Texture::LoadImageToTexture("res/tent.jpg");
+    unsigned FishTexture = Texture::LoadImageToTexture("res/cube.jpg");
+    unsigned FloorDiffuseTexture = Texture::LoadImageToTexture("res/ice.jpg");
+    unsigned FloorSpecularTexture = Texture::LoadImageToTexture("res/ice-diff.jpg");
+
+
     std::vector<float> CubeVertices = { //Vec dato 
        // X     Y     Z     NX    NY    NZ    U     V    FRONT SIDE
        -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // L D
@@ -239,6 +249,18 @@ int main() {
     glEnableVertexAttribArray(2);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+
+    Model Fox("res/low-poly-fox/low-poly-fox.obj");
+    if (!Fox.Load()) {
+        std::cerr << "Failed to load fox\n";
+        glfwTerminate();
+        return -1;
+    }
+    Shader ColorShader("shaders/color.vert", "shaders/color.frag");
+
+    Shader PhongShaderMaterialTexture("shaders/basic.vert", "shaders/phong_material_texture.frag");
+    glUseProgram(PhongShaderMaterialTexture.GetId());
+
 
         glBindVertexArray(0);
         glUseProgram(0);
