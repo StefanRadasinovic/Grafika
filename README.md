@@ -1,6 +1,8 @@
-Siberian winter landscape, depicted by fox on frozen landscape and  a cozy tent illuminated by a toggleable yellow lantern light and movable cube. 
-Lantern inside tent switches on/off with keys '1' and '2'.
-Cube moves up/down with the keys 'C' and 'V'.
+#Siberian winter landscape, depicted by fox on frozen landscape and  a cozy tent illuminated by a toggleable yellow lantern light and movable cube. 
+
+#Lantern inside tent switches on/off with keys '1' and '2'.
+
+#Cube moves up/down with the keys 'C' and 'V'.
 
 ![syberia1](https://github.com/StefanRadasinovic/Grafika/assets/93866850/c2e85793-b283-4001-8dab-be12fe2931a4)
 
