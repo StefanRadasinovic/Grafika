@@ -361,6 +361,117 @@ int main() {
     glm::mat4 View = glm::lookAt(FPSCamera.GetPosition(), FPSCamera.GetTarget(), FPSCamera.GetUp());
     glm::mat4 ModelMatrix(1.0f);
 
+    // Current angle around Y axis, with regards to XZ plane at which the point light is situated at
+    float Angle = 0.0f;
+    // Distance of point light from center of rotation
+    float Distance = 5.0f;
+    float TargetFrameTime = 1.0f / TargetFPS;
+    float StartTime = glfwGetTime();
+    float EndTime = glfwGetTime();
+    glClearColor(0.3f, 0.7f, 1.0f, 0.0f);
+
+    Shader* CurrentShader = &PhongShaderMaterialTexture;
+    float x = 0, y = 0, z = 0;
+    while (!glfwWindowShouldClose(Window)) {
+        glfwPollEvents();
+        HandleInput(&State);
+
+        glUseProgram(CurrentShader->GetId());
+        PhongShaderMaterialTexture.SetUniform3f("uPointLight.Kd", glm::vec3(0.5f * Svetlofenjer, 0.5f * Svetlofenjer, 0.0f));
+        PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Position", glm::vec3(5.5f, -1.0f + y, 0.8f));
+        PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Position", glm::vec3(5.9f, -1.0f + y, 0.8));
+        PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Position", glm::vec3(5.7f, -1.0f + y, 0.6f));
+        PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Position", glm::vec3(5.70f, -1.0f + y, 1.0f));
+        PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Position", glm::vec3(5.7f, -0.8f + y, 0.8f));
+        PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Position", glm::vec3(5.7f, -1.2f + y, 0.8f));
+        glUseProgram(0);
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        // NOTE(Jovan): In case of window resize, update projection. Bit bad for performance to do it every iteration.
+        // If laggy, remove this line
+        Projection = glm::perspective(45.0f, WindowWidth / (float)WindowHeight, 0.1f, 100.0f);
+        View = glm::lookAt(FPSCamera.GetPosition(), FPSCamera.GetTarget(), FPSCamera.GetUp());
+        StartTime = glfwGetTime();
+        glUseProgram(CurrentShader->GetId());
+        CurrentShader->SetProjection(Projection);
+        CurrentShader->SetView(View);
+        CurrentShader->SetUniform3f("uViewPos", FPSCamera.GetPosition());
+
+        Angle += State.mDT;
+        MoveCube(Window, x, y, z);
+        glm::mat4 identity(1.0f);
+
+        // NOTE(Jovan): Set cube specular and diffuse textures
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(6.0, -2.65, 1.0));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(1.5f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, WaterDiffuseTexture);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, WaterSpecularTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
+
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(5.7, -1.0 + y, 0.8));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.5f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, FishTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
+
+        //leftSide tent
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::rotate(identity, GetRadians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        ModelMatrix = glm::rotate(ModelMatrix, GetRadians(-45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(-4.4, -2.2, 0.6));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(3.0f, 6.5f, 0.05f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, TentTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
+
+        //rightSide tent
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::rotate(identity, GetRadians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        ModelMatrix = glm::rotate(ModelMatrix, GetRadians(45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(-4.4, -2.6, -1.0));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(3.0f, 6.5f, 0.05f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, TentTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
+
+        //backSide tent
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::rotate(identity, GetRadians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        ModelMatrix = glm::rotate(ModelMatrix, GetRadians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(-1.2, -1.6, -5.9));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(4.5f, 4.5f, 0.05f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, TentTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
+
+        //stick
+        ModelMatrix = glm::mat4(1.0f);
+        ModelMatrix = glm::rotate(identity, GetRadians(-45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        ModelMatrix = glm::rotate(ModelMatrix, GetRadians(30.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(4.4, 1.9, -1.2));
+        ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.1f, 3.0f, 0.1f));
+        CurrentShader->SetModel(ModelMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, CubeDiffuseTexture);
+        glBindVertexArray(CubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
+
+
+
 
 
 
