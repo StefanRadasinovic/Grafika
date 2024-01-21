@@ -74,6 +74,19 @@ KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode) {
     case GLFW_KEY_ESCAPE: glfwSetWindowShouldClose(window, GLFW_TRUE); break;
     }
 }
+static void
+MoveCube(GLFWwindow* context, float& x, float& y, float& z) {
+    if (glfwGetKey(context, GLFW_KEY_C) == GLFW_PRESS) {
+        if (y < 0) {
+            y += 0.07;
+        }
+    }
+    if (glfwGetKey(context, GLFW_KEY_V) == GLFW_PRESS) {
+        if (y > -2.0) {
+            y -= 0.07;
+        }
+    }
+}
 
 static void
 FramebufferSizeCallback(GLFWwindow* window, int width, int height) {
@@ -82,7 +95,43 @@ FramebufferSizeCallback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
+static void
+HandleInput(EngineState* state) {
+    Input* UserInput = state->mInput;
+    Camera* FPSCamera = state->mCamera;
+    if (UserInput->MoveLeft) FPSCamera->Move(-1.0f, 0.0f, state->mDT);
+    if (UserInput->MoveRight) FPSCamera->Move(1.0f, 0.0f, state->mDT);
+    if (UserInput->MoveDown) FPSCamera->Move(0.0f, -1.0f, state->mDT);
+    if (UserInput->MoveUp) FPSCamera->Move(0.0f, 1.0f, state->mDT);
 
+    if (UserInput->LookLeft) FPSCamera->Rotate(1.0f, 0.0f, state->mDT);
+    if (UserInput->LookRight) FPSCamera->Rotate(-1.0f, 0.0f, state->mDT);
+    if (UserInput->LookDown) FPSCamera->Rotate(0.0f, -1.0f, state->mDT);
+    if (UserInput->LookUp) FPSCamera->Rotate(0.0f, 1.0f, state->mDT);
+}
+
+static void
+DrawFloor(unsigned vao, const Shader& shader, unsigned diffuse, unsigned specular) {
+    glUseProgram(shader.GetId());
+    glBindVertexArray(vao);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, diffuse);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, specular);
+    float Size = 4.0f;
+    for (int i = -2; i < 4; ++i) {
+        for (int j = -2; j < 4; ++j) {
+            glm::mat4 Model(1.0f);
+            Model = glm::translate(Model, glm::vec3(i * Size, -2.0f, j * Size));
+            Model = glm::scale(Model, glm::vec3(Size, 0.1f, Size));
+            shader.SetModel(Model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+    }
+
+    glBindVertexArray(0);
+    glUseProgram(0);
+}
 
 float GetRadians(float angle) {
     return 3.14 * angle / 180;
