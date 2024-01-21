@@ -78,12 +78,12 @@ static void
 MoveCube(GLFWwindow* context, float& x, float& y, float& z) {
     if (glfwGetKey(context, GLFW_KEY_C) == GLFW_PRESS) {
         if (y < 0) {
-            y += 0.07;
+            y += 0.08;
         }
     }
     if (glfwGetKey(context, GLFW_KEY_V) == GLFW_PRESS) {
         if (y > -2.0) {
-            y -= 0.07;
+            y -= 0.08;
         }
     }
 }
@@ -184,7 +184,7 @@ int main() {
     unsigned WaterDiffuseTexture = Texture::LoadImageToTexture("res/water.jpg");
     unsigned WaterSpecularTexture = Texture::LoadImageToTexture("res/water-diff.jpg");
     unsigned TentTexture = Texture::LoadImageToTexture("res/tent.jpg");
-    unsigned FishTexture = Texture::LoadImageToTexture("res/cube.jpg");
+    unsigned CubeTexture = Texture::LoadImageToTexture("res/cube.jpg");
     unsigned FloorDiffuseTexture = Texture::LoadImageToTexture("res/ice.jpg");
     unsigned FloorSpecularTexture = Texture::LoadImageToTexture("res/ice-diff.jpg");
 
@@ -285,8 +285,8 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.Kc", 1.0f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.Kl", 0.092f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.Kq", 0.032f);
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.OuterCutOff", glm::cos(glm::radians(10.0f)));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
     //crvena
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Position", glm::vec3(5.70f, -1.0f, 1.0f));
@@ -297,8 +297,8 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.Kc", 1.0f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.Kl", 0.092f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.Kq", 0.032f);
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.OuterCutOff", glm::cos(glm::radians(10.0f)));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
     //nandzarasta
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Position", glm::vec3(5.7f, -0.8f, 0.8f));
@@ -309,8 +309,8 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.Kc", 1.0f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.Kl", 0.092f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.Kq", 0.032f);
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.OuterCutOff", glm::cos(glm::radians(10.0f)));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
 
     //zutiOdsjaj
@@ -322,8 +322,8 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight.Kc", 1.0f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight.Kl", 0.092f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight.Kq", 0.032f);
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.OuterCutOff", glm::cos(glm::radians(10.0f)));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
 
     //ljubicasta
@@ -335,8 +335,8 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.Kc", 1.0f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.Kl", 0.092f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.Kq", 0.032f);
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.OuterCutOff", glm::cos(glm::radians(10.0f)));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
     //zelena
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Position", glm::vec3(5.5f, -1.0f, 0.8f));
@@ -347,8 +347,8 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.Kc", 1.0f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.Kl", 0.092f);
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.Kq", 0.032f);
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.InnerCutOff", glm::cos(glm::radians(10.0f))); // kad pomeras kocku pojacava se/opada
-    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.OuterCutOff", glm::cos(glm::radians(10.0f)));
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
+    PhongShaderMaterialTexture.SetUniform1f("uSpotlight1.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
     // Diminishes the light's diffuse component by half, tinting it slightly red
     PhongShaderMaterialTexture.SetUniform1i("uMaterial.Kd", 0);
@@ -418,7 +418,7 @@ int main() {
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.5f));
         CurrentShader->SetModel(ModelMatrix);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, FishTexture);
+        glBindTexture(GL_TEXTURE_2D, CubeTexture);
         glBindVertexArray(CubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, CubeVertices.size() / 8);
 
