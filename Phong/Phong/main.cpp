@@ -261,13 +261,13 @@ int main() {
     Shader PhongShaderMaterialTexture("shaders/basic.vert", "shaders/phong_material_texture.frag");
     glUseProgram(PhongShaderMaterialTexture.GetId());
 
-    //Ambijentalno svetlo/Direkciono
+    //Ambiental light/Direkciono
     PhongShaderMaterialTexture.SetUniform3f("uDirLight.Direction", glm::vec3(1.0f, -1.0f, 0.0f));
     PhongShaderMaterialTexture.SetUniform3f("uDirLight.Ka", glm::vec3(0.7f, 0.7f, 0.7f));
     PhongShaderMaterialTexture.SetUniform3f("uDirLight.Kd", glm::vec3(0.05f, 0.05f, 0.05f));
     PhongShaderMaterialTexture.SetUniform3f("uDirLight.Ks", glm::vec3(0.8f));
 
-    //Svetlofenjer
+    //Lanternlight
     PhongShaderMaterialTexture.SetUniform3f("uPointLight.Position", glm::vec3(0.3f, 0.5f, -3.3f));
     PhongShaderMaterialTexture.SetUniform3f("uPointLight.Ka", glm::vec3(0.5f * Svetlofenjer, 0.5f * Svetlofenjer, 0.0f));
     PhongShaderMaterialTexture.SetUniform3f("uPointLight.Kd", glm::vec3(0.5f * Svetlofenjer, 0.5f * Svetlofenjer, 0.0f));
@@ -276,7 +276,7 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uPointLight.Kl", 0.092f);
     PhongShaderMaterialTexture.SetUniform1f("uPointLight.Kq", 0.032f);
 
-    //plavo
+    //blueReflection
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Position", glm::vec3(5.7f, -1.0f, 0.6f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Direction", glm::vec3(0.0f, -0.5f, -1.0f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight2.Ka", glm::vec3(0.0f, 0.0f, 1.0f));
@@ -288,7 +288,7 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight2.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
-    //crvena
+    //redReflection
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Position", glm::vec3(5.70f, -1.0f, 1.0f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Direction", glm::vec3(0.0f, -0.5f, 1.0f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight3.Ka", glm::vec3(1.0f, 0.0f, 0.0f));
@@ -300,7 +300,7 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight3.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
-    //nandzarasta
+    //orangeReflection
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Position", glm::vec3(5.7f, -0.8f, 0.8f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Direction", glm::vec3(0.0f, 1.0f, 0.0f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight4.Ka", glm::vec3(1.0f, 0.5f, 0.0f));
@@ -313,7 +313,7 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight4.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
 
-    //zutiOdsjaj
+    //yellowReflection
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Position", glm::vec3(5.9f, -1.0f, 0.8));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Direction", glm::vec3(1.0f, -0.5f, 0.0f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight.Ka", glm::vec3(1.0f, 1.0f, 0.0f));
@@ -326,7 +326,7 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
 
-    //ljubicasta
+    //purpleReflection
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Position", glm::vec3(5.7f, -1.2f, 0.8f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Direction", glm::vec3(0.0f, -1.0f, 0.0f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight5.Ka", glm::vec3(0.5f, 0.0f, 0.5f));
@@ -338,7 +338,7 @@ int main() {
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.InnerCutOff", glm::cos(glm::radians(12.0f))); // kad pomeras kocku pojacava se/opada
     PhongShaderMaterialTexture.SetUniform1f("uSpotlight5.OuterCutOff", glm::cos(glm::radians(12.0f)));
 
-    //zelena
+    //greenReflection
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Position", glm::vec3(5.5f, -1.0f, 0.8f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Direction", glm::vec3(-1.0f, -0.5f, 0.0f));
     PhongShaderMaterialTexture.SetUniform3f("uSpotlight1.Ka", glm::vec3(0.0f, 1.0f, 0.0f));
@@ -487,7 +487,7 @@ int main() {
         ColorShader.SetModel(ModelMatrix);
 
 
-        //plavo
+        //blue
         ModelMatrix = glm::translate(identity, glm::vec3(5.7f, -1.0f + y, 0.6f));
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
         ColorShader.SetModel(ModelMatrix);
@@ -496,7 +496,7 @@ int main() {
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
-        //zuto
+        //yellow
         ModelMatrix = glm::translate(identity, glm::vec3(5.9f, -1.0f + y, 0.8));
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
         ColorShader.SetModel(ModelMatrix);
@@ -504,7 +504,7 @@ int main() {
         ColorShader.SetUniform3f("uColor", glm::vec3(1.0f, 1.0f, 0.0f));
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
-        //crveno
+        //red
         ModelMatrix = glm::translate(identity, glm::vec3(5.70f, -1.0f + y, 1.0f));
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
         ColorShader.SetModel(ModelMatrix);
@@ -512,7 +512,7 @@ int main() {
         ColorShader.SetUniform3f("uColor", glm::vec3(1.0, 0.0f, 0.0f));
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
-        //zeleno
+        //green
         ModelMatrix = glm::translate(identity, glm::vec3(5.5f, -1.0f + y, 0.8f));
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
         ColorShader.SetModel(ModelMatrix);
@@ -521,7 +521,7 @@ int main() {
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
-        //nandzarasta
+        //orange
         ModelMatrix = glm::translate(identity, glm::vec3(5.7f, -0.8f + y, 0.8f));
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
         ColorShader.SetModel(ModelMatrix);
@@ -530,7 +530,7 @@ int main() {
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
-        ////ljubicasto
+        ////purple
         ModelMatrix = glm::translate(identity, glm::vec3(5.7f, -1.2f + y, 0.8f));
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
         ColorShader.SetModel(ModelMatrix);
@@ -540,7 +540,7 @@ int main() {
 
 
 
-        //Svetlofenjer
+        //Lanternlight
         ModelMatrix = glm::translate(identity, glm::vec3(0.3f, 0.5f, -3.3f));
         ModelMatrix = glm::scale(ModelMatrix, glm::vec3(0.25f));
         ColorShader.SetModel(ModelMatrix);
