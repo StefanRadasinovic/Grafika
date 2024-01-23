@@ -14,6 +14,10 @@ Cube moves up/down with the keys 'C' and 'V'.
 
 2.In the event of encountering package errors, reinstall same NuGet packages
 
+## Setup
+1. Clone the repositories'git clone https://github.com/lazarevicivana/doctor-portal-fe.git'
+2. Install dependencies and configure the environment
+
 ![syberia1](https://github.com/StefanRadasinovic/Grafika/assets/93866850/c2e85793-b283-4001-8dab-be12fe2931a4)
 
 
