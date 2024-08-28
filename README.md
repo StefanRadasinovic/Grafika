@@ -1,5 +1,5 @@
 # ComputerGraphics-Siberia
-- Siberian winter landscape, depicted by fox on frozen landscape and a cozy tent illuminated by a toggleable yellow lantern light and movable cube using OpenGL and Phong shading.
+- Siberian winter landscape, depicted by fox on frozen landscape and a tent illuminated by a toggleable yellow lantern light and movable cube using OpenGL and Phong shading.
 - Adjust the camera angle using the 'WASD' and arrow keys.
 - Toggle the lantern inside the tent with the '1' and '2' keys.
 - Cube moves up/down with the keys 'C' and 'V'
